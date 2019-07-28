@@ -20,7 +20,6 @@ const io = require('socket.io').listen(server);
 app.set('io', io);
 
 let divergenceval;
-let divergencearray;
 
 function setdiver() {
     const stamp = Date.now()%10
@@ -48,22 +47,21 @@ function setdiver() {
 
 setdiver();
 
-io.on('connect', (socket) => {
+io.on('connection', (socket) => {
     socket.emit(
         'diverge',
-        {val: divergenceval}
+        {val: divergenceval, reload: false}
     );
 
     socket.on('updated', (data) => {
         setdiver();
-        console.log(data.btn)
         socket.emit(
             'diverge', 
-            {val: divergenceval}
+            {val: divergenceval, reload: true}
         );
         socket.broadcast.emit(
             'diverge', 
-            {val: divergenceval}
+            {val: divergenceval, reload: true}
         );
     });
     
