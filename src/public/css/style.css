@@ -1,0 +1,16 @@
+.display {
+    padding-top: 3em;
+    position: relative;
+}
+img {
+    float: left;
+    width: 11%;
+}
+.center {
+    margin: auto;
+    width: 70%;
+    padding: 4em;
+  }
+body {
+    background-color: black;
+  }
